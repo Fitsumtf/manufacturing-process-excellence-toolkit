@@ -63,6 +63,30 @@ def capability_status(cpk: float) -> str:
     return "Very high capability"
 
 
+def generate_centered_capability_sample(
+    *, n: int, lsl: float, usl: float, target: float, target_cpk: float,
+    seed: int = 42,
+) -> np.ndarray:
+    """Generate a reproducible educational sample with exact mean, sample s, and Cpk.
+
+    The generated sample is standardized using ddof=1, then centered at target and
+    scaled so the nearest specification is exactly target_cpk standard deviations
+    away. It is a simulation, not production data.
+    """
+    if n < 3:
+        raise ValueError("At least three simulated measurements are required")
+    if not lsl < target < usl:
+        raise ValueError("Expected LSL < target < USL")
+    if target_cpk <= 0:
+        raise ValueError("Target Cpk must be positive")
+    rng = np.random.default_rng(seed)
+    z = rng.normal(size=n)
+    z = (z - z.mean()) / z.std(ddof=1)
+    nearest_spec_distance = min(target - lsl, usl - target)
+    sample_stdev = nearest_spec_distance / (3.0 * target_cpk)
+    return target + z * sample_stdev
+
+
 def analyze_capability(
     values: np.ndarray | list[float], *, lsl: float, usl: float, target: float
 ) -> CapabilityResult:

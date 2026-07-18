@@ -4,7 +4,7 @@
 
 🚀 **[Launch Version 1 — Statistical Engineering Toolkit](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — validated Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, and process-data demonstrations.
 
-🧠 **[Launch Version 2 — Manufacturing Intelligence System](https://manufacturing-process-intelligence.streamlit.app/)** — live production records, FPY/RTY, BM25 engineering-lessons retrieval, evidence-grounded investigation briefs, and integrated Word reports.
+🧠 **Version 2 deployment target:** `https://manufacturing-process-intelligence.streamlit.app/` — live production records, FPY/RTY, BM25 lessons retrieval, evidence-grounded engineering briefs, and integrated reports.
 
 This repository connects the tools that manufacturing engineers use together rather than treating them as isolated calculations:
 
@@ -67,6 +67,20 @@ The public Streamlit deployment is a portfolio demonstration, not a production h
 | Process data | What is unstable or dominant? | I-MR limits, Pareto counts and cumulative percentage |
 | Process improvement | How was the problem solved and sustained? | Generalized cases using data, root cause, action, validation |
 | Line experience | How do analytics connect to physical production? | Launch, balancing, fixtures, controls, vision, commissioning |
+
+## Interactive capability sandbox
+
+Version 1 can retain the verified 100-sample educational case, upload a CSV, paste
+measurements, or generate a clearly labeled comparison sample at a selected centered
+Cpk. The active analysis reports Cp, Cpu, Cpl, Cpk, observed PPM, normal-model estimated
+PPM, a histogram, a time-order chart, out-of-specification rows, and downloadable CSV
+and Word outputs.
+
+For real studies, specification limits must come from approved engineering or customer
+requirements; they must not be widened to obtain a passing result. Establish calibration
+and measurement-system adequacy, confirm statistical stability, preserve time order and
+subgroup context, and follow applicable customer criteria before interpreting capability.
+Do not upload confidential or regulated data to the public demonstration deployment.
 
 ## Verified demonstration results
 
@@ -204,4 +218,4 @@ MIT License.
 
 ---
 
-Built by [Dr. Fitsum Taye Feyissa](https://github.com/Fitsumtf) — mechanical, manufacturing, and process engineering, statistical quality, technical documentation, and applied data science.
+Built by [Dr. Fitsum Taye Feyissa](https://github.com/Fitsumtf) — manufacturing and process engineering, statistical quality, technical documentation, and applied data science.

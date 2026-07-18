@@ -68,7 +68,13 @@ def _metric_table(doc: Document, result: CapabilityResult) -> None:
             cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
-def build_report(values: np.ndarray, result: CapabilityResult, histogram: Path, run_chart: Path, output: Path) -> Path:
+def build_report(
+    values: np.ndarray, result: CapabilityResult, histogram: Path, run_chart: Path,
+    output: Path, *, report_title: str = "Automotive Body Fit Process Capability Study",
+    context: str = "High-Volume Automotive OEM | Hood-to-Fender Gap | Synthetic Educational Case Study",
+    characteristic: str = "hood-to-fender gap",
+    disclaimer: str = DISCLAIMER,
+) -> Path:
     doc = Document()
     section = doc.sections[0]
     section.top_margin = Inches(0.7); section.bottom_margin = Inches(0.7)
@@ -80,24 +86,30 @@ def build_report(values: np.ndarray, result: CapabilityResult, histogram: Path, 
 
     title = doc.add_paragraph(style="Title")
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    title.add_run("Automotive Body Fit Process Capability Study")
-    subtitle = doc.add_paragraph("High-Volume Automotive OEM | Hood-to-Fender Gap | Synthetic Educational Case Study")
+    title.add_run(report_title)
+    subtitle = doc.add_paragraph(context)
     subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
     note = doc.add_paragraph()
     note.style = doc.styles["Intense Quote"]
     note.add_run("PORTFOLIO DISCLAIMER — ").bold = True
-    note.add_run(DISCLAIMER)
+    note.add_run(disclaimer)
     _metric_table(doc, result)
 
     doc.add_heading("1. Executive Summary", level=1)
     doc.add_paragraph(
-        f"The study evaluates {result.n} synthetic hood-to-fender gap measurements. "
-        f"The mean is {result.mean:.3f} mm against a {result.target:.3f} mm target, so the process is centered. "
-        f"The sample standard deviation is {result.sample_stdev:.3f} mm. Cp and Cpk are both {result.cpk:.3f}, "
-        "below the illustrative 1.33 capability criterion. The process is aimed correctly, but variation is too large."
+        f"The study evaluates {result.n} measurements for {characteristic}. "
+        f"The mean is {result.mean:.3f} against a {result.target:.3f} target. "
+        f"The sample standard deviation is {result.sample_stdev:.3f} mm. Cp is {result.cp:.3f} and Cpk is {result.cpk:.3f}, "
+        f"with an illustrative status of '{result.status}'. Cp/Cpk interpretation is valid only after "
+        "measurement-system adequacy and statistical stability have been established."
     )
     p = doc.add_paragraph(); p.add_run(f"Conclusion: {result.status}. ").bold = True
-    p.add_run("The estimated natural process spread is wider than the available specification window.")
+    if result.cp < 1.0:
+        p.add_run("The estimated natural process spread is wider than the available specification window.")
+    elif result.cpk < result.cp * 0.95:
+        p.add_run("The process location materially reduces capability relative to its potential capability.")
+    else:
+        p.add_run("The process is reasonably centered; confirm stability and the applicable acceptance criterion.")
 
     doc.add_heading("2. Definitions and Equations", level=1)
     doc.add_paragraph("Cp = (USL - LSL) / (6 x s)")
@@ -109,7 +121,7 @@ def build_report(values: np.ndarray, result: CapabilityResult, histogram: Path, 
     )
 
     doc.add_heading("3. Visual Analysis", level=1)
-    for image, caption in ((histogram, "Figure 1. Capability histogram and fitted normal distribution."), (run_chart, "Figure 2. Time-ordered measurements; sample 31 exceeds the USL.")):
+    for image, caption in ((histogram, "Figure 1. Capability histogram and fitted normal distribution."), (run_chart, "Figure 2. Time-ordered measurements and specification limits.")):
         doc.add_picture(str(image), width=Inches(6.2))
         p = doc.add_paragraph(caption); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
@@ -117,7 +129,7 @@ def build_report(values: np.ndarray, result: CapabilityResult, histogram: Path, 
     points = [
         "Centering is not the primary problem: the mean matches the nominal target.",
         f"Variation is the primary problem: six standard deviations equal {result.six_sigma_spread:.3f} mm, wider than the {result.spec_width:.3f} mm specification window.",
-        f"One observed measurement is out of specification, equivalent to {result.observed_ppm:,.0f} ppm in this small dataset.",
+        f"Observed out-of-specification count is {result.observed_rejects}, equivalent to {result.observed_ppm:,.0f} ppm in this dataset.",
         "The normal-model expected PPM is an estimate, not a guarantee of future defect rate.",
         "Confirm statistical stability with an appropriate control chart and measurement adequacy with Gauge R&R before relying on capability indices.",
     ]
@@ -126,9 +138,9 @@ def build_report(values: np.ndarray, result: CapabilityResult, histogram: Path, 
     doc.add_heading("5. Recommended Improvement Plan", level=1)
     actions = [
         ("Measurement", "Perform Gauge R&R and standardize gauge orientation and contact pressure."),
-        ("Fixture", "Inspect locators, clamps, hinge interfaces, and wear points; establish preventive-maintenance limits."),
+        ("Equipment/fixture", "Inspect locators, clamps, tooling interfaces, and wear points; establish preventive-maintenance limits."),
         ("Method", "Standardize adjustment sequence, torque method, and acceptance criteria in the work instruction."),
-        ("Material/design", "Review tolerance-stack contributors and supplier variation for closures, hinges, fenders, and mounts."),
+        ("Material/design", "Review tolerance-stack contributors, process inputs, material variation, and supplier variation."),
         ("Control", "Use rational subgroups and an X-bar/R chart, or an I-MR chart when subgrouping is not appropriate."),
         ("Verification", "After corrective action, collect an independent time-ordered dataset and demonstrate the program-specific Cpk requirement."),
     ]
@@ -159,7 +171,7 @@ def build_report(values: np.ndarray, result: CapabilityResult, histogram: Path, 
         cells[2].text = "PASS" if result.lsl <= value <= result.usl else "FAIL"
 
     footer = section.footer.paragraphs[0]
-    footer.text = "Automotive Body Fit Cp/Cpk Analyzer | Synthetic educational portfolio project"
+    footer.text = "Interactive Process Capability Analyzer | Engineering review required"
     footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
     output.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output)
