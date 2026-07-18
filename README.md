@@ -2,6 +2,8 @@
 
 **An integrated Python portfolio for manufacturing capability, risk, equipment effectiveness, measurement systems, process data, and hands-on engineering problem solving.**
 
+🚀 **[Try the live application](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — no installation required. Explore Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, process data, and generalized manufacturing-improvement case studies in one interactive dashboard.
+
 This repository connects the tools that manufacturing engineers use together rather than treating them as isolated calculations:
 
 `Measurement system → process stability → capability → risk → losses → corrective action → verification`
