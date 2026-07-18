@@ -4,7 +4,7 @@
 
 🚀 **[Launch Version 1 Classic — Statistical Engineering Toolkit](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — the preserved original Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, and process-data application.
 
-📈 **Version 1 Interactive Capability deployment target:** `https://automotive-process-capability.streamlit.app/` — upload CSV data, paste measurements, calculate Cp/Cpk, compare scenarios, and download a Word report.
+📈 **[Launch Version 1 Interactive — Process Capability](https://automotive-process-capability.streamlit.app/)** — upload CSV data, paste measurements, calculate Cp/Cpk, compare scenarios, and download a Word report.
 
 🧠 **[Launch Version 2 — Manufacturing Intelligence](https://manufacturing-process-intelligence.streamlit.app/)** — live production records, FPY/RTY, BM25 lessons retrieval, evidence-grounded engineering briefs, and integrated reports.
 
