@@ -2,11 +2,56 @@
 
 **An integrated Python portfolio for manufacturing capability, risk, equipment effectiveness, measurement systems, process data, and hands-on engineering problem solving.**
 
-🚀 **[Try the live application](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — no installation required. Explore Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, process data, and generalized manufacturing-improvement case studies in one interactive dashboard.
+🚀 **[Launch Version 1 — Statistical Engineering Toolkit](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — validated Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, and process-data demonstrations.
+
+🧠 **Version 2 deployment target:** `https://manufacturing-process-intelligence.streamlit.app/` — live production records, FPY/RTY, BM25 lessons retrieval, evidence-grounded engineering briefs, and integrated reports.
 
 This repository connects the tools that manufacturing engineers use together rather than treating them as isolated calculations:
 
 `Measurement system → process stability → capability → risk → losses → corrective action → verification`
+
+## Choose the appropriate version
+
+Version 2 does not replace Version 1. Version 1 remains the transparent calculation authority; Version 2 adds workflow integration, retrieval, and decision support.
+
+| Decision factor | Version 1 — Statistical Toolkit | Version 2 — Intelligence System |
+|---|---|---|
+| Primary purpose | Auditable engineering calculations | Integrated production monitoring and investigation support |
+| Data | Synthetic examples or uploaded study data | Session-based live records with CSV backup/restore |
+| Capability | Cp, Cpk, Cpu, Cpl, observed and estimated PPM | Uses validated V1 methods when capability is required |
+| Risk | PFMEA RPN and revised-risk tracking | Connects live problems and retrieved lessons to risk review |
+| Equipment | OEE component and loss calculations | OEE trends by date, shift, line, and station |
+| Yield | Quality and defect metrics | FPY, station yield, and Rolled Throughput Yield (RTY) |
+| Measurement | Crossed ANOVA Gauge R&R | Uses V1 measurement authority and surfaces action needs |
+| Retrieval | Not included | BM25-ranked historical engineering lessons |
+| Briefing | Statistical interpretation | Traceable, evidence-grounded investigation brief |
+| Reporting | Capability and integrated summary reports | Live KPI, retrieved-evidence, and engineering-brief report |
+| Storage | CSV inputs and generated outputs | Session storage plus explicit CSV download/restore |
+| Recommended use | Statistical authority and offline analysis | Decision support, shift review, and management visibility |
+
+### Higher-level recommendation
+
+- Use **Version 1** when auditability, offline operation, statistical verification, or a single approved study is the priority.
+- Use **Version 2** when teams need live yield visibility, repeated-problem retrieval, cross-functional investigation support, and integrated reporting.
+- Use the **hybrid architecture** for professional deployment: V1 remains the calculation authority; V2 retrieves evidence and organizes decisions; qualified engineers approve specifications, safety actions, process changes, and product disposition.
+
+## Version 2 architecture and data boundary
+
+```text
+Live production record
+        ↓
+FPY / RTY / OEE / defects / downtime
+        ↓
+BM25 retrieves similar engineering lessons
+        ↓
+Evidence-grounded engineering brief
+        ↓
+Human-reviewed containment, PFMEA, corrective action, and verification
+        ↓
+Downloadable Word report and CSV backup
+```
+
+The public Streamlit deployment is a portfolio demonstration, not a production historian or MES. Streamlit session state is intentionally paired with CSV download/restore because local files on a community-hosted app should not be treated as durable manufacturing records. A future production deployment would require authenticated users, governed database storage, audit trails, access control, retention rules, cybersecurity review, and validated interfaces to approved source systems.
 
 > **Public portfolio disclaimer**  
 > This portfolio uses synthetic educational datasets and generalized manufacturing case studies solely to demonstrate engineering, statistical analysis, and problem-solving methods. It contains no proprietary production records, confidential specifications, internal documents, or company-specific manufacturing data.
@@ -119,11 +164,39 @@ pytest -q
 
 ## References
 
-- [AIAG Statistical Process Control](https://www.aiag.org/training-and-resources/manuals/details/SPC-3)
-- [AIAG Measurement Systems Analysis](https://www.aiag.org/training-and-resources/manuals/details/MSA-4)
-- [AIAG manuals and AIAG–VDA FMEA resources](https://www.aiag.org/training-and-resources/manuals)
-- [Douglas C. Montgomery, *Introduction to Statistical Quality Control*, 8th Edition](https://www.wiley.com/en-us/Introduction%2Bto%2BStatistical%2BQuality%2BControl%2C%2B8th%2BEdition-p-9781119399308)
-- [ISO 22514 — Statistical methods in process management](https://www.iso.org/committee/49742/x/catalogue/)
+The software implements educational interpretations of established methods. Program- or customer-specific requirements always supersede the example thresholds used here.
+
+### Statistical process control and capability
+
+- [NIST/SEMATECH Engineering Statistics Handbook — Process Capability](https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm). Defines capability as a comparison between a stable process and specification limits and presents Cp/Cpk equations and assumptions.
+- [AIAG Statistical Process Control](https://www.aiag.org/training-and-resources/manuals/details/SPC-3). Automotive-industry guidance for statistical process control and process improvement.
+- [ISO 22514 series — Statistical methods in process management](https://www.iso.org/committee/49742/x/catalogue/). International process-capability and performance standards.
+- Douglas C. Montgomery, [*Introduction to Statistical Quality Control*, 8th Edition](https://www.wiley.com/en-us/Introduction%2Bto%2BStatistical%2BQuality%2BControl%2C%2B8th%2BEdition-p-9781119399308). Statistical-quality-control reference covering control charts, capability, and improvement methods.
+
+### Measurement systems and risk
+
+- [AIAG Measurement Systems Analysis](https://www.aiag.org/training-and-resources/manuals/details/MSA-4). Automotive guidance for evaluating measurement-system variation, including repeatability and reproducibility.
+- [AIAG manuals and AIAG–VDA FMEA resources](https://www.aiag.org/training-and-resources/manuals). Primary automotive Core Tools source. This portfolio calculates RPN and transparent educational priority; it does not reproduce or claim the proprietary AIAG–VDA Action Priority tables.
+
+### Manufacturing KPIs, yield, and problem prioritization
+
+- [ISO 22400-1:2014 — Manufacturing-operations KPI framework](https://www.iso.org/standard/56847.html). Defines an industry-neutral framework and terminology for manufacturing KPIs; the standard was reviewed and confirmed in 2025.
+- [ISO 22400-2:2014 — KPI definitions and descriptions](https://www.iso.org/standard/54497.html). Specifies manufacturing KPIs using formulas, elements, time behavior, units, and other characteristics.
+- [ASQ — First Pass Yield and Rolled Throughput Yield overview](https://my.asq.org/blogs/barbara-banek/2024/02/22/asq). Describes FPY as output passing without correction and RTY as the combined yield of a multistep process.
+- [ASQ — Pareto Chart](https://asq.org/quality-resources/pareto). Defines the Pareto chart as a tool for analyzing the frequency of process problems or causes.
+
+### Information retrieval and engineering knowledge
+
+- Stephen E. Robertson and Hugo Zaragoza, [“The Probabilistic Relevance Framework: BM25 and Beyond”](https://dl.acm.org/doi/10.1561/1500000019), *Foundations and Trends in Information Retrieval*, 3(4), 333–389, 2009. DOI: `10.1561/1500000019`.
+
+## Interpretation limitations
+
+- Capability indices do not prove statistical control, normality, causal control, or measurement-system adequacy.
+- Specification limits are engineering requirements; control limits are calculated from process behavior and are not interchangeable.
+- FPY, RTY, and OEE depend on consistent operational definitions, count boundaries, time bases, and loss coding.
+- BM25 measures lexical relevance; a high score does not prove that two failures share the same physical cause.
+- Retrieved lessons and generated briefs are investigation aids, not approved containment, root cause, process change, or product disposition.
+- Synthetic portfolio results demonstrate software behavior and must not be represented as production performance from any company.
 
 ## License
 
@@ -131,4 +204,4 @@ MIT License.
 
 ---
 
-Developed by Dr. Fitsum Taye Feyissa — Specializing in mechanical and manufacturing process engineering, statistical quality control, technical documentation, and applied data science.
+Built by [Dr. Fitsum Taye Feyissa](https://github.com/Fitsumtf) — manufacturing and process engineering, statistical quality, technical documentation, and applied data science.
