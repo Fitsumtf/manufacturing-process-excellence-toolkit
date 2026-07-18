@@ -129,4 +129,4 @@ MIT License.
 
 ---
 
-Built by [Dr. Fitsum Taye Feyissa](https://github.com/Fitsumtf) — manufacturing and process engineering, statistical quality, technical documentation, and applied data science.
+Developed by Dr. Fitsum Taye Feyissa — Specializing in mechanical and manufacturing process engineering, statistical quality control, technical documentation, and applied data science.
