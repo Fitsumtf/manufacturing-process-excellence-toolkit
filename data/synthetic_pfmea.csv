@@ -1,0 +1,6 @@
+process_step,failure_mode,effect,cause,current_control,severity,occurrence,detection,recommended_action,owner,revised_severity,revised_occurrence,revised_detection
+Gap measurement,Incorrect measurement,False accept or unnecessary adjustment,Gauge technique varies,Visual work instruction,6,5,6,Standardize technique and complete GR&R,Quality Engineer,6,2,3
+Fixture locate,Panel located incorrectly,Gap/flush outside specification,Locator wear or contamination,Daily visual inspection,8,5,5,"Add wear limits, cleaning standard, and PM",Equipment Engineer,8,2,3
+Fastener torque,Joint under-torqued,Panel position shifts downstream,Tool setting or sequence error,Torque tool OK/NOK,8,3,3,Add recipe lock and traceability,Process Engineer,8,2,2
+Final verification,Defect not detected,Nonconforming unit advances,Subjective visual inspection,Manual inspection,7,4,6,Introduce calibrated gauge and vision audit,Quality Engineer,7,2,3
+Material presentation,Wrong component variant,Assembly interference,Mixed material at point of use,Barcode scan,7,2,3,Error-proof replenishment and scan interlock,Production Control,7,1,2

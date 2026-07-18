@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manufacturing-process-excellence-toolkit"
+version = "1.0.0"
+description = "Integrated manufacturing analytics: capability, PFMEA, OEE, Gauge R&R, SPC, and improvement"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Dr. Fitsum Taye Feyissa"}]
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "matplotlib>=3.8",
+  "python-docx>=1.1",
+]
+
+[project.optional-dependencies]
+app = ["streamlit>=1.32"]
+test = ["pytest>=8.0"]
+
+[project.scripts]
+automotive-body-fit-cpk = "automotive_body_fit.cli:main"
+manufacturing-toolkit-report = "manufacturing_toolkit.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
