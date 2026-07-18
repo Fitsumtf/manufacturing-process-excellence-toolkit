@@ -4,7 +4,7 @@
 
 🚀 **[Launch Version 1 — Statistical Engineering Toolkit](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — validated Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, and process-data demonstrations.
 
-🧠 **Version 2 deployment target:** `https://manufacturing-process-intelligence.streamlit.app/` — live production records, FPY/RTY, BM25 lessons retrieval, evidence-grounded engineering briefs, and integrated reports.
+🧠 **[Launch Version 2 — Manufacturing Intelligence System](https://manufacturing-process-intelligence.streamlit.app/)** — live production records, FPY/RTY, BM25 engineering-lessons retrieval, evidence-grounded investigation briefs, and integrated Word reports.
 
 This repository connects the tools that manufacturing engineers use together rather than treating them as isolated calculations:
 
