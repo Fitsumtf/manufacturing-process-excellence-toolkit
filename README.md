@@ -2,9 +2,11 @@
 
 **An integrated Python portfolio for manufacturing capability, risk, equipment effectiveness, measurement systems, process data, and hands-on engineering problem solving.**
 
-🚀 **[Launch Version 1 — Statistical Engineering Toolkit](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — validated Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, and process-data demonstrations.
+🚀 **[Launch Version 1 Classic — Statistical Engineering Toolkit](https://manufacturing-process-excellence-toolkit.streamlit.app/)** — the preserved original Cp/Cpk, PFMEA, OEE, Gauge R&R, SPC, and process-data application.
 
-🧠 **Version 2 deployment target:** `https://manufacturing-process-intelligence.streamlit.app/` — live production records, FPY/RTY, BM25 lessons retrieval, evidence-grounded engineering briefs, and integrated reports.
+📈 **Version 1 Interactive Capability deployment target:** `https://automotive-process-capability.streamlit.app/` — upload CSV data, paste measurements, calculate Cp/Cpk, compare scenarios, and download a Word report.
+
+🧠 **[Launch Version 2 — Manufacturing Intelligence](https://manufacturing-process-intelligence.streamlit.app/)** — live production records, FPY/RTY, BM25 lessons retrieval, evidence-grounded engineering briefs, and integrated reports.
 
 This repository connects the tools that manufacturing engineers use together rather than treating them as isolated calculations:
 
@@ -12,26 +14,21 @@ This repository connects the tools that manufacturing engineers use together rat
 
 ## Choose the appropriate version
 
-Version 2 does not replace Version 1. Version 1 remains the transparent calculation authority; Version 2 adds workflow integration, retrieval, and decision support.
+No version replaces another. Version 1 Classic preserves the original portfolio, Version 1 Interactive adds real-data capability analysis, and Version 2 adds workflow integration, retrieval, and decision support.
 
-| Decision factor | Version 1 — Statistical Toolkit | Version 2 — Intelligence System |
-|---|---|---|
-| Primary purpose | Auditable engineering calculations | Integrated production monitoring and investigation support |
-| Data | Synthetic examples or uploaded study data | Session-based live records with CSV backup/restore |
-| Capability | Cp, Cpk, Cpu, Cpl, observed and estimated PPM | Uses validated V1 methods when capability is required |
-| Risk | PFMEA RPN and revised-risk tracking | Connects live problems and retrieved lessons to risk review |
-| Equipment | OEE component and loss calculations | OEE trends by date, shift, line, and station |
-| Yield | Quality and defect metrics | FPY, station yield, and Rolled Throughput Yield (RTY) |
-| Measurement | Crossed ANOVA Gauge R&R | Uses V1 measurement authority and surfaces action needs |
-| Retrieval | Not included | BM25-ranked historical engineering lessons |
-| Briefing | Statistical interpretation | Traceable, evidence-grounded investigation brief |
-| Reporting | Capability and integrated summary reports | Live KPI, retrieved-evidence, and engineering-brief report |
-| Storage | CSV inputs and generated outputs | Session storage plus explicit CSV download/restore |
-| Recommended use | Statistical authority and offline analysis | Decision support, shift review, and management visibility |
+| Decision factor | V1 Classic | V1 Interactive Capability | V2 Intelligence |
+|---|---|---|---|
+| Primary purpose | Preserve original statistical portfolio | Analyze user-selected capability data | Production monitoring and investigation support |
+| Data | Verified synthetic examples | Reference, uploaded CSV, pasted, or simulated data | Session records with CSV backup/restore |
+| Capability | Cp and Cpk reference case | Cp, Cpu, Cpl, Cpk, observed and estimated PPM | Uses validated V1 methods when capability is required |
+| Other tools | PFMEA, OEE, Gauge R&R, SPC, case studies | Capability-focused | FPY, RTY, OEE, defects, downtime, retrieval |
+| Reporting | Dashboard demonstrations | CSV, charts, out-of-spec rows, Word report | KPI, retrieved evidence, brief, Word report |
+| Recommended use | Original portfolio demonstration | Approved offline study and scenario analysis | Shift review and decision support |
 
 ### Higher-level recommendation
 
-- Use **Version 1** when auditability, offline operation, statistical verification, or a single approved study is the priority.
+- Use **Version 1 Classic** to view the original integrated statistical portfolio.
+- Use **Version 1 Interactive Capability** for auditable Cp/Cpk calculations using an approved study dataset.
 - Use **Version 2** when teams need live yield visibility, repeated-problem retrieval, cross-functional investigation support, and integrated reporting.
 - Use the **hybrid architecture** for professional deployment: V1 remains the calculation authority; V2 retrieves evidence and organizes decisions; qualified engineers approve specifications, safety actions, process changes, and product disposition.
 
@@ -161,7 +158,9 @@ pytest -q
 ├── data/                      # Synthetic demonstration datasets
 ├── scripts/                   # Deterministic dataset generator
 ├── tests/                     # Mathematical and validation tests
-├── toolkit_app.py             # Unified Streamlit dashboard
+├── toolkit_app.py             # Preserved Version 1 Classic entrypoint
+├── v1_interactive_capability/ # Separate real-data Cp/Cpk application
+├── v2_manufacturing_intelligence/ # Separate intelligence application
 ├── app.py                     # Detailed capability application
 └── output/                    # Example reports and charts
 ```
